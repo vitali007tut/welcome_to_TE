@@ -23,7 +23,8 @@ const ComponentOne = () => {
 };
 
 const ComponentTwo = () => {
-    const { data } = useSWR('custom_key_2', () => fetchOnePost({ delayMS: 2000 }));
+    // https://swr.vercel.app/docs/arguments#multiple-arguments
+    const { data } = useSWR('custom_key_1', fetchOnePost);
     //...some logic
 
     return data ? (
