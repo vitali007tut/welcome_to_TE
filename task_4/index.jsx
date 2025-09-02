@@ -1,48 +1,42 @@
 import { useState } from "react";
 
-export const Block1 = ({ mouseEnterCallbak, imgSrc, imgAlt }) => {
-  const [isActive, setActive] = useState(false);
+const Block = ({ mouseEnterCallback, children }) => {
+    const [isActive, setActive] = useState(false);
 
-  const mouseEnterHandler = () => {
-    setActive(true);
-    mouseEnterCallbak();
-  };
+    const mouseEnterHandler = () => {
+        setActive(true);
+        mouseEnterCallback();
+    };
 
-  return (
-    <div onMouseEnter={mouseEnterHandler} className={isActive ? "active" : ""}>
-      <img src={imgSrc} alt={imgAlt} />
-    </div>
-  );
+    return (
+        <div onMouseEnter={mouseEnterHandler} className={isActive ? 'active' : ''}>
+            {children}
+        </div>
+    );
 };
 
-export const Block2 = ({ mouseEnterCallbak, content }) => {
-  const [isActive, setActive] = useState(false);
-
-  const mouseEnterHandler = () => {
-    setActive(true);
-    mouseEnterCallbak();
-  };
-
-  return (
-    <div onMouseEnter={mouseEnterHandler} className={isActive ? "active" : ""}>
-      <p>{content}</p>
-    </div>
-  );
+export const Block1 = ({ mouseEnterCallback, imgSrc, imgAlt }) => {
+    return (
+        <Block mouseEnterCallback={mouseEnterCallback}>
+            <img src={imgSrc} alt={imgAlt} />
+        </Block>
+    );
 };
 
-export const Block3 = ({ mouseEnterCallbak, userData }) => {
-  const [isActive, setActive] = useState(false);
+export const Block2 = ({ mouseEnterCallback, content }) => {
+    return (
+        <Block mouseEnterCallback={mouseEnterCallback}>
+            <p>{content}</p>
+        </Block>
+    );
+};
 
-  const mouseEnterHandler = () => {
-    setActive(true);
-    mouseEnterCallbak();
-  };
-
-  return (
-    <div onMouseEnter={mouseEnterHandler} className={isActive ? "active" : ""}>
-      <address>
-        country: {userData.country}, street: {userData.street}
-      </address>
-    </div>
-  );
+export const Block3 = ({ mouseEnterCallback, userData }) => {
+    return (
+        <Block mouseEnterCallback={mouseEnterCallback}>
+            <address>
+                country: {userData.country}, street: {userData.street}
+            </address>
+        </Block>
+    );
 };
